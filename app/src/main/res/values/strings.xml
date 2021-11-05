@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListPad</string>
+    <string name="tela_login">Login</string>
+    <string name="tela_cadastro">Cadastrar</string>
+</resources>
