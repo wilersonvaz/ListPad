@@ -10,16 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListPad">
         <activity
-            android:name="model.TelaUsuario"
+            android:name=".TelaCadastroCategoria"
             android:exported="true"
-            android:label="@string/tela_cadastro"/>
+            android:label="@string/tela_cadastro_categoria"/>
+        <activity
+            android:name=".item_categoria"
+            android:exported="true" />
+        <activity
+            android:name=".TelaCategoria"
+            android:exported="true"
+            android:label="@string/tela_lista_categoria"/>
+        <activity
+            android:name=".TelaCadastroLista"
+            android:exported="true"
+            android:label="Cadastrar Tarefa" />
+        <activity
+            android:name=".TelaCadastroUsuario"
+            android:exported="true"
+            android:label="@string/tela_cadastro" />
         <activity
             android:name=".Login"
             android:exported="true"
-            android:label="@string/tela_login"/>
+            android:label="@string/tela_login" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/tela_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

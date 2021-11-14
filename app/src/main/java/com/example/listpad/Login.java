@@ -12,7 +12,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-import model.TelaUsuario;
 import model.DbHelper;
 import model.Usuarios;
 import modelDAO.UsuariosDAO;
@@ -72,7 +71,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        Intent intent = new Intent(this, TelaUsuario.class);
+        Intent intent = new Intent(this, TelaCadastroUsuario.class);
         startActivity(intent);
 //        Snackbar.make(v, "Cadastrar", Snackbar.LENGTH_LONG)
 //               .setAction("Action", null).show();

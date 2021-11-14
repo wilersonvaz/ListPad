@@ -70,4 +70,29 @@ public class UsuariosDAO {
 
         return listaUsuarios;
     }
+
+    public int checaEmailExiste(Usuarios usu){
+        int result = 0;
+        try{
+
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            String sql = "SELECT emailUsuario, senhaUsuario as cont FROM usuarios WHERE 1 = 1 AND emailUsuario = ? ";
+            Log.i("Log # ", usu.getEmailUsuario());
+            Cursor cursor = db.rawQuery(sql, new String[]{usu.getEmailUsuario()}, null);
+
+            Log.i("Log # ", "Cursor: "+cursor.getCount());
+            if(cursor.getCount() > 0){
+                int indiceEmail = cursor.getColumnIndex("emailUsuario");
+                int indiceSenha = cursor.getColumnIndex("senhaUsuario");
+
+                Log.i("Log # ", "Email: "+cursor.getString(indiceEmail)+" senha: "+cursor.getString(indiceSenha));
+                result = 1;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

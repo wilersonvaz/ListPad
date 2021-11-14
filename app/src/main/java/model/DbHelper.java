@@ -12,16 +12,15 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "listPad";
     public static final int DATA_BASE_VERSION = 1;
     private final String CREATE_TABLE_USUARIOS = "CREATE TABLE IF NOT EXISTS usuarios (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,  nomeUsuario VARCHAR, emailUsuario VARCHAR, senhaUsuario VARCHAR)";
-    private final String CREATE_TABLE_CLIENTES = "CREATE TABLE IF NOT EXISTS clientes ( idclientes INTEGER PRIMARY KEY AUTOINCREMENT, nomeCliente VARCHAR, sobreNomeCliente VARCHAR, emailCliente VARCHAR, telefoneCliente VARCHAR, bicicletaCliente VARCHAR)";
-    private final String CREATE_TABLE_REVISAO = "CREATE TABLE IF NOT EXISTS revisao (idrevisao INTEGER AUTOINCREMENT, usuarios_idusuario INT NOT NULL, clientes_idclientes INT NOT NULL, descricaoRevisao VARCHAR, flagUrgencia INT NULL,   categoriaRevisao VARCHAR, PRIMARY KEY (idrevisao, usuarios_idusuario, clientes_idclientes), FOREIGN KEY (usuarios_idusuario) REFERENCES usuarios (idusuario) ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY (clientes_idclientes) REFERENCES clientes (idclientes) ON DELETE NO ACTION ON UPDATE NO ACTION)";
-    private final String CREATE_TABLE_ITEM_REVISAO = "CREATE TABLE IF NOT EXISTS itemRevisao (idItemRevisao INTEGER, revisao_idrevisao INTEGER NOT NULL, descricaoItemrevisao VARCHAR, PRIMARY KEY (iditemRevisao, revisao_idrevisao), FOREIGN KEY (revisao_idrevisao) REFERENCES revisao (idrevisao) ON DELETE NO ACTION ON UPDATE NO ACTION)";
-    private final String CREATE_TABLE_CATEGORIA_REVISAO = "CREATE TABLE IF NOT EXISTS categoriaRevisao (idcategoriaRevisao INTEGER, revisao_idrevisao INTEGER, descricaoCategoria VARCHAR, PRIMARY KEY (idcategoriaRevisao, revisao_idrevisao), FOREIGN KEY (revisao_idrevisao) REFERENCES revisao (idrevisao))";
+
+    private final String CREATE_TABLE_CATEGORIA_LISTA = "CREATE TABLE IF NOT EXISTS categoriaLista (idCategoriaLista INTEGER PRIMARY KEY AUTOINCREMENT,descricaoCategoria VARCHAR)";
+    private final String CREATE_TABLE_LISTA = "CREATE TABLE IF NOT EXISTS lista (idLista INTEGER PRIMARY KEY AUTOINCREMENT,usuarios_idUsuario INTEGER ,categoria_idCategoria INTEGER ,descricaoLista VARCHAR, categoriaLista VARCHAR,flagUrgencia INT DEFAULT 0,FOREIGN KEY (usuarios_idUsuario)  REFERENCES usuarios (idUsuario)  ON DELETE CASCADE  ON UPDATE CASCADE,FOREIGN KEY (categoria_idCategoria)  REFERENCES categoriaLista(idCategoriaLista)  ON DELETE CASCADE ON UPDATE CASCADE)";
+    private final String CREATE_TABLE_ITENS_LISTA = "CREATE TABLE IF NOT EXISTS itensLista (idItensLista INTEGER PRIMARY KEY AUTOINCREMENT,lista_idLista INT NOT NULL,itemLista VARCHAR,qtdIten INT ,unidadeItem VARCHAR,precoItem VARCHAR,flagFinalizado INT DEFAULT 0,FOREIGN KEY (lista_idLista)  REFERENCES lista (idLista)  ON DELETE CASCADE ON UPDATE CASCADE)";
 
     public static String TABLE_NAME_USUARIOS = "usuarios";
-    public static String TABLE_NAME_CLIENTES = "clientes";
-    public static String TABLE_NAME_REVISAO = "revisao";
-    public static String TABLE_NAME_ITEM_REVISAO = "itemRevisao";
-    public static String TABLE_NAME_CATEGORIA_REVISAO  = "categoriaRevisao";
+    public static String TABLE_NAME_LISTA = "lista";
+    public static String TABLE_NAME_CATEGORIA  = "categoriaLista";
+    public static String TABLE_NAME_ITEM_LISTA  = "itensLista";
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATA_BASE_VERSION);
@@ -32,6 +31,11 @@ public class DbHelper extends SQLiteOpenHelper {
         try{
             Log.i("Log # ", "Entrou no onCreate");
             sqLiteDatabase.execSQL(CREATE_TABLE_USUARIOS);
+            sqLiteDatabase.execSQL(CREATE_TABLE_CATEGORIA_LISTA);
+            sqLiteDatabase.execSQL(CREATE_TABLE_LISTA);
+            sqLiteDatabase.execSQL(CREATE_TABLE_ITENS_LISTA);
+
+
 //            sqLiteDatabase.execSQL(CREATE_TABLE_CLIENTES);
 //            sqLiteDatabase.execSQL(CREATE_TABLE_USUARIOS);
 //            sqLiteDatabase.execSQL(CREATE_TABLE_ITEM_REVISAO);

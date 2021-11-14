@@ -6,16 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static  int idUsuario = -1;
+    public static  int idUsuario = 1;
     public static String nomeUsuario = "";
     TextView textView;
 
@@ -32,7 +35,17 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("Seja bem-vindo "+nomeUsuario+"!");
         }
 
-    //Fecha o onCreate
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent lista = new Intent(getApplicationContext(), TelaCadastroLista.class);
+                startActivity(lista);
+            }
+        });
+
+
+        //Fecha o onCreate
     }
 
     @Override
@@ -44,17 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.home:
-                Intent main = new Intent(this, MainActivity.class);
-                startActivity(main);
-                break;
-            case R.id.sair:
-                idUsuario = -1;
-                nomeUsuario = "";
-                Intent sair = new Intent(this, Login.class);
-                startActivity(sair);
-                break;
+        try{
+            switch (item.getItemId()){
+                case R.id.home:
+                    Intent main = new Intent(this, MainActivity.class);
+                    startActivity(main);
+                    break;
+                case R.id.sair:
+                    idUsuario = -1;
+                    nomeUsuario = "";
+                    Intent sair = new Intent(this, Login.class);
+                    startActivity(sair);
+                    break;
+                case R.id.listaCategoria:
+                    Intent cat = new Intent(this, TelaCategoria.class);
+                    startActivity(cat);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return super.onOptionsItemSelected(item);
     }

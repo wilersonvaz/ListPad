@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">ListPad</string>
+    <string name="tela_main">Início</string>
     <string name="tela_login">Login</string>
-    <string name="tela_cadastro">Cadastrar</string>
+    <string name="tela_cadastro">Cadastro de usuário</string>
+    <string name="tela_lista">Lista</string>
+    <string name="tela_lista_categoria">Categorias</string>
+    <string name="tela_cadastro_categoria">Cadastrar categoria</string>
 </resources>

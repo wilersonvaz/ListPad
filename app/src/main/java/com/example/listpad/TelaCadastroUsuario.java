@@ -1,4 +1,4 @@
-package model;
+package com.example.listpad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,15 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.listpad.Login;
-import com.example.listpad.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import model.DbHelper;
 import model.Usuarios;
 import modelDAO.UsuariosDAO;
 
-public class TelaUsuario extends AppCompatActivity {
+public class TelaCadastroUsuario extends AppCompatActivity {
 
     EditText edtNomeUsuario, edtEmailUsuario, edtSenhaUsuario;
     Button btnCadastrar;
@@ -25,7 +23,7 @@ public class TelaUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar);
+        setContentView(R.layout.activity_cadastrar_usuario);
 
         edtNomeUsuario = findViewById(R.id.edtNomeUsuario);
         edtEmailUsuario = findViewById(R.id.edtEmailUsuario);
@@ -44,13 +42,22 @@ public class TelaUsuario extends AppCompatActivity {
                     DbHelper dbHelper = new DbHelper(getApplicationContext());
 
                     UsuariosDAO usuDAO = new UsuariosDAO(dbHelper);
-                    if(usuDAO.addUsuario(usu) > 0){
-                        Snackbar.make(view, "Usuário cadastrado com sucesso!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                        edtNomeUsuario.setText(null);
-                        edtEmailUsuario.setText(null);
-                        edtSenhaUsuario.setText(null);
+                    int usuarioExiste = usuDAO.checaEmailExiste(usu);
+                    Log.i("Log # ", "UsuarioExiste: "+usuarioExiste);
+
+                    if(usuarioExiste < 1){
+                        if(usuDAO.addUsuario(usu) > 0){
+                            Snackbar.make(view, "Usuário cadastrado com sucesso!", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                            edtNomeUsuario.setText(null);
+                            edtEmailUsuario.setText(null);
+                            edtSenhaUsuario.setText(null);
+                        }
+                    }else{
+                        Snackbar.make(view, "Email já cadastrado!", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
                     }
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
