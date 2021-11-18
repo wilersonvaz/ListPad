@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     ArrayList<Lista> lista = new ArrayList<>();
     RecyclerView idRecyclerLista;
+    int idLista = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
                 int salvarLista = bundle.getInt("salvarLista");
 
                 if(salvarLista > 0){
-                    Log.i("Log # ","Lista cadastrada com sucesso!");
-                    Snackbar.make(findViewById(android.R.id.content) , "Lista cadastrada com sucesso!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(android.R.id.content) , "Lista salva com sucesso!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }else{
-                    Snackbar.make(findViewById(android.R.id.content) , "Ocorreu um erro ao cadastrar a lista!", Snackbar.LENGTH_LONG)
+                    Snackbar.make(findViewById(android.R.id.content) , "Ocorreu um erro ao salvar a lista!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
@@ -66,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
             listarListas();
 
             AdapterLista adapterLista = new AdapterLista(lista);
+            adapterLista.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if(lista != null){
+                        idLista = lista.get(idRecyclerLista.getChildAdapterPosition(view)).getIdLista();
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idLista", idLista);
+                    Intent intent = new Intent(getApplicationContext(), TelaCadastroLista.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            });
             idRecyclerLista.setAdapter(adapterLista);
 
             FloatingActionButton fab = findViewById(R.id.fab);
