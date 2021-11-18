@@ -4,13 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_cadastrar.xml" value="0.19322916666666667" />
-        <entry key="app/src/main/res/layout/activity_item_categoria.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_item_categoria.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_lista_tarefa.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_tela_cadastro_categoria.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_tela_cadastro_lista.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_tela_cadastro_lista.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_tela_categoria.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_tela_lista.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/lista_tarefa.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_principal.xml" value="0.1" />
       </map>
     </option>
