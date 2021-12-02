@@ -1,5 +1,8 @@
 package Adapter;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,11 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.listpad.MainActivity;
 import com.example.listpad.R;
+import com.example.listpad.TelaItensLista;
 
 import java.util.ArrayList;
 
+import model.DbHelper;
 import model.Lista;
+import modelDAO.ListaDAO;
 
 public class AdapterLista extends RecyclerView.Adapter<AdapterLista.ViewLista> implements View.OnClickListener{
     ArrayList<Lista> lista;
@@ -42,6 +49,44 @@ public class AdapterLista extends RecyclerView.Adapter<AdapterLista.ViewLista> i
             urgente = "Urgência baixa";
         }
         holder.idFlagUrgente.setText(urgente);
+
+        holder.idVerDetalhesLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("idLista", lista.get(position).getIdLista());
+
+                Intent intent = new Intent(view.getContext(), TelaItensLista.class);
+                intent.putExtras(bundle);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        holder.idExcluirDetalhesLista.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DbHelper dbHelper = new DbHelper(view.getContext());
+                dbHelper.getWritableDatabase();
+
+                int idLista = lista.get(position).getIdLista();
+                Lista l = new Lista();
+                l.setIdLista(idLista);
+
+                ListaDAO listaDAO = new ListaDAO(dbHelper);
+                Bundle bundle = new Bundle();
+
+                if(listaDAO.excluirLista(l) > 0){
+                    bundle.putInt("excluirLista", 1);
+                }else{
+                    bundle.putInt("excluirLista",0);
+                }
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                intent.putExtras(bundle);
+                view.getContext().startActivity(intent);
+
+            }
+        });
 
     }
 

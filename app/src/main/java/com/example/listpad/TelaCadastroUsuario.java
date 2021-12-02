@@ -23,7 +23,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar_usuario);
+        setContentView(R.layout.activity_cadastro_usuario);
 
         edtNomeUsuario = findViewById(R.id.edtNomeUsuario);
         edtEmailUsuario = findViewById(R.id.edtEmailUsuario);

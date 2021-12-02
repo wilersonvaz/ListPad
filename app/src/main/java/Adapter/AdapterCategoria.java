@@ -3,6 +3,7 @@ package Adapter;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,16 +50,22 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.View
                 try{
 
                     DbHelper dbHelper = new DbHelper(view.getContext());
-                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+//                    SQLiteDatabase db = dbHelper.getWritableDatabase();
 
                     Categoria cat = new Categoria();
                     cat.setIdCategoria(listaCategoria.get(position).getIdCategoria());
 
                     CategoriaDAO catDAO = new CategoriaDAO(dbHelper);
+                    Bundle bundle = new Bundle();
                     if(catDAO.excluirCategoria(cat) > 0) {
-                        Intent intent = new Intent(view.getContext(), TelaCategoria.class);
-                        view.getContext().startActivity(intent);
+                        bundle.putInt("excluirCategoria", 1);
+                    }else{
+                        bundle.putInt("excluirCategoria", 0);
                     }
+
+                    Intent intent = new Intent(view.getContext(), TelaCategoria.class);
+                    intent.putExtras(bundle);
+                    view.getContext().startActivity(intent);
 
 
                 }catch (Exception e){

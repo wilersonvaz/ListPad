@@ -74,8 +74,6 @@ public class ListaDAO {
 
                 }
 
-            }else{
-                Log.i("Log # ", "O count é igual a 0");
             }
 
             cursor.close();
@@ -90,8 +88,7 @@ public class ListaDAO {
     public ArrayList<Lista> populaLista(Lista lista) {
         ArrayList<Lista> populaLlista = new ArrayList<>();
         try{
-            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.usuarios_idUsuario= ? AND A.idLista = ? ORDER BY A.flagUrgencia  DESC";
-            Log.i("Log # ",sql+" Id usuário: "+MainActivity.idUsuario +" id da lista: "+lista.getIdLista());
+            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.usuarios_idUsuario= ? AND A.idLista = ? ORDER BY A.flagUrgencia, A.idLista DESC";
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf( MainActivity.idUsuario ), String.valueOf( lista.getIdLista() )}, null);
 
@@ -99,11 +96,18 @@ public class ListaDAO {
                 while (cursor.moveToNext()){
                     int indiceIdLista = cursor.getColumnIndex("idLista");
                     int indiceDescricaoLista = cursor.getColumnIndex("descricaoLista");
+                    int indiceIdCategoria = cursor.getColumnIndex("idCategoriaLista");
+                    int indiceDescricaoCategoria = cursor.getColumnIndex("descricaoCategoria");
                     int indiceFlagUrgencia = cursor.getColumnIndex("flagUrgencia");
+
+                    Categoria cat = new Categoria();
+                    cat.setIdCategoria(cursor.getInt(indiceIdCategoria));
+                    cat.setDescricaoCategoria(cursor.getString(indiceDescricaoCategoria));
 
                     Lista l = new Lista();
                     l.setIdLista(cursor.getInt(indiceIdLista));
                     l.setDescricaoLista(cursor.getString(indiceDescricaoLista));
+                    l.setCategoria(cat);
                     l.setFlagUrgencia(cursor.getInt(indiceFlagUrgencia));
 
                     populaLlista.add(l);
@@ -133,5 +137,19 @@ public class ListaDAO {
         }
 
         return retultado;
+    }
+
+    public int excluirLista(Lista l) {
+        int retorno = 0;
+        try{
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            retorno = db.delete(DbHelper.TABLE_NAME_LISTA, "idLista = ? AND usuarios_idUsuario = ? ", new String[]{String.valueOf(l.getIdLista()), String.valueOf(MainActivity.idUsuario)});
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return retorno;
     }
 }

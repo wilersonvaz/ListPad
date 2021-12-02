@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/shape.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_cadastra_item_lista.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_cadastrar.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/layout/activity_cadastro_item_lista.xml" value="0.10208333333333333" />
+        <entry key="app/src/main/res/layout/activity_cadastro_usuario.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_item_categoria.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_itens_lista.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_lista_tarefa.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_mostra_itens_lista (cópia).xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_mostra_itens_lista.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_tela_cadastro_categoria.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_tela_cadastro_lista.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_tela_categoria.xml" value="0.1" />

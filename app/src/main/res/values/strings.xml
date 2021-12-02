@@ -6,4 +6,6 @@
     <string name="tela_lista">Lista</string>
     <string name="tela_lista_categoria">Categorias</string>
     <string name="tela_cadastro_categoria">Cadastrar categoria</string>
+    <string name="tela_itens_lista">Itens da lista</string>
+    <string name="tela_cadastro_itens_lista">Cadastro de itens da lista</string>
 </resources>

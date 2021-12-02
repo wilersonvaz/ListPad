@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,21 @@ public class TelaCategoria extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_categoria);
+
+        if(getIntent() != null && getIntent().hasExtra("excluirCategoria")){
+            Bundle bundle = getIntent().getExtras();
+            int excluirCategoria = bundle.getInt("excluirCategoria");
+
+            if(excluirCategoria > 0){
+                Snackbar.make(findViewById(android.R.id.content) , "Categoria Excluída com sucesso!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }else{
+                Snackbar.make(findViewById(android.R.id.content) , "Categoria um erro ao excluir a lista!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+
+
         listaCategoria = new ArrayList<>();
         mRecyclerView = findViewById(R.id.recyclerCategoria);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

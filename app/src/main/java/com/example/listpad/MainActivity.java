@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static  int idUsuario = -1;
     public static String nomeUsuario = "";
-    TextView textView;
+    TextView textView,idVerDetalhesLista,idExcluirDetalhesLista;
     ArrayList<Lista> lista = new ArrayList<>();
     RecyclerView idRecyclerLista;
     int idLista = -1;
@@ -45,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
         }else{
             textView = findViewById(R.id.idTextView);
             textView.setText("Seja bem-vindo "+nomeUsuario+"!");
-//            this.setTitle("Ola "+nomeUsuario+"!");
+            idVerDetalhesLista = findViewById(R.id.idVerDetalhesLista);
+            idExcluirDetalhesLista = findViewById(R.id.idExcluirDetalhesLista);
+
+            //            this.setTitle("Ola "+nomeUsuario+"!");
 
             if(getIntent() != null && getIntent().hasExtra("salvarLista")){
                 Bundle bundle = getIntent().getExtras();
@@ -56,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                 }else{
                     Snackbar.make(findViewById(android.R.id.content) , "Ocorreu um erro ao salvar a lista!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+            }
+
+            if(getIntent() != null && getIntent().hasExtra("excluirLista")){
+                Bundle bundle = getIntent().getExtras();
+                int excluirLista = bundle.getInt("excluirLista");
+
+                if(excluirLista > 0){
+                    Snackbar.make(findViewById(android.R.id.content) , "Lista Excluída com sucesso!", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else{
+                    Snackbar.make(findViewById(android.R.id.content) , "Ocorreu um erro ao excluir a lista!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }

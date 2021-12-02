@@ -30,8 +30,8 @@ public class Login extends AppCompatActivity {
         senhaUsuario = findViewById(R.id.edtSenhaUsuario);
         btnLogin = findViewById(R.id.btnLogin);
 
-        emailUsuario.setText("wilersonalves@gmail.com");
-        senhaUsuario.setText("123");
+//        emailUsuario.setText("wilersonalves@gmail.com");
+//        senhaUsuario.setText("123");
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,5 @@ public class Login extends AppCompatActivity {
     public void onClick(View v){
         Intent intent = new Intent(this, TelaCadastroUsuario.class);
         startActivity(intent);
-//        Snackbar.make(v, "Cadastrar", Snackbar.LENGTH_LONG)
-//               .setAction("Action", null).show();
     }
 }

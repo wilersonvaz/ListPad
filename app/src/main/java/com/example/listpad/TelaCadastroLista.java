@@ -87,6 +87,7 @@ public class TelaCadastroLista extends AppCompatActivity {
                 }else{
                     idFlagUrgencia.setChecked(false);
                 }
+                Log.i("Log # ", lst.getCategoria().getDescricaoCategoria());
             }
 
         }
@@ -135,6 +136,8 @@ public class TelaCadastroLista extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

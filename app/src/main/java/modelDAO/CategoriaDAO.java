@@ -110,16 +110,6 @@ public class CategoriaDAO {
 
             retorno = db.update(DbHelper.TABLE_NAME_CATEGORIA, values, "idCategoriaLista = ? ", new String[]{String.valueOf( cat.getIdCategoria() ) });
 
-//            String sql = "UPDATE "+DbHelper.TABLE_NAME_CATEGORIA+" SET descricaoCategoria = ? WHERE 1 = 1 and idCategoriaLista = ?";
-//
-//            ContentValues values = new ContentValues();
-//            values.put("descricaoCategoria", cat.getDescricaoCategoria());
-//            values.put("idCategoriaLista", cat.getIdCategoria());
-//
-//            db.execSQL(sql);
-//
-//            retorno = 1;
-
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -130,10 +120,8 @@ public class CategoriaDAO {
         int retorno = 0;
         try{
             SQLiteDatabase db = dbHelper.getWritableDatabase();
-                       ContentValues values = new ContentValues();
-            values.put("idCategoriaLista",cat.getIdCategoria());
 
-            retorno =  db.delete(DbHelper.TABLE_NAME_CATEGORIA, "idCategoriaLista = ? ", new String[]{ String.valueOf( cat.getIdCategoria() )});
+            retorno =  db.delete(DbHelper.TABLE_NAME_CATEGORIA, "idCategoriaLista = ? AND usuarios_idUsuario = ?  ", new String[]{ String.valueOf( cat.getIdCategoria() ), String.valueOf(MainActivity.idUsuario)});
 
         }catch (Exception e){
             e.printStackTrace();

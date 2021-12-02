@@ -10,16 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListPad">
         <activity
+            android:name=".TelaCadastroItemLista"
+            android:exported="true"
+            android:label="Cadastrar Item da lista"/>
+        <activity
+            android:name=".TelaItensLista"
+            android:exported="true"
+            android:label="@string/tela_itens_lista" />
+        <activity
             android:name=".TelaCadastroCategoria"
             android:exported="true"
-            android:label="@string/tela_cadastro_categoria"/>
+            android:label="@string/tela_cadastro_categoria" />
         <activity
             android:name=".item_categoria"
             android:exported="true" />
         <activity
             android:name=".TelaCategoria"
             android:exported="true"
-            android:label="@string/tela_lista_categoria"/>
+            android:label="@string/tela_lista_categoria" />
         <activity
             android:name=".TelaCadastroLista"
             android:exported="true"
