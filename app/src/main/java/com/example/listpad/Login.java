@@ -30,9 +30,6 @@ public class Login extends AppCompatActivity {
         senhaUsuario = findViewById(R.id.edtSenhaUsuario);
         btnLogin = findViewById(R.id.btnLogin);
 
-//        emailUsuario.setText("wilersonalves@gmail.com");
-//        senhaUsuario.setText("123");
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
