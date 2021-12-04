@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/blue">
+
+            <TextView
+                android:id="@+id/idCodigoItemLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Código: "
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/descItemLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descriçao do item da lista"
+                android:textSize="20dp"
+                android:layout_column="4"
+                android:layout_gravity="start|center_horizontal|center_vertical"
+                app:layout_constraintBaseline_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+
+            <CheckBox
+                android:id="@+id/idFlagFinalizado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_horizontal|center_vertical"
+                android:layout_column="5"
+                android:textSize="20dp"
+                android:layout_weight="2"
+                app:layout_constraintRight_toRightOf="@id/descItemLista"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="Finalizado" />
+
+            <ImageButton
+                android:id="@+id/btnExcluirItemLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_horizontal|center_vertical"
+                android:layout_column="6"
+                app:layout_constraintRight_toRightOf="@id/idFlagFinalizado"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/delete"
+                android:background="@null"/>
+        </GridLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="11dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
