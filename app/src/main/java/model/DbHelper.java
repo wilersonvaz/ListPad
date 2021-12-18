@@ -13,7 +13,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public static final int DATA_BASE_VERSION = 1;
     private final String CREATE_TABLE_USUARIOS = "CREATE TABLE IF NOT EXISTS usuarios (idUsuario INTEGER PRIMARY KEY AUTOINCREMENT,  nomeUsuario VARCHAR, emailUsuario VARCHAR, senhaUsuario VARCHAR)";
 
-    private final String CREATE_TABLE_CATEGORIA_LISTA = "CREATE TABLE IF NOT EXISTS categoriaLista (     INTEGER PRIMARY KEY AUTOINCREMENT,usuarios_idUsuario int,descricaoCategoria VARCHAR, FOREIGN KEY (usuarios_idUsuario) REFERENCES categoriaLista (idUsuario) ON DELETE CASCADE ON UPDATE CASCADE)";
+    private final String CREATE_TABLE_CATEGORIA_LISTA = "CREATE TABLE IF NOT EXISTS categoriaLista (idCategoriaLista INTEGER PRIMARY KEY AUTOINCREMENT,usuarios_idUsuario int,descricaoCategoria VARCHAR, FOREIGN KEY (usuarios_idUsuario) REFERENCES categoriaLista (idUsuario) ON DELETE CASCADE ON UPDATE CASCADE)";
     private final String CREATE_TABLE_LISTA = "CREATE TABLE IF NOT EXISTS lista (idLista INTEGER PRIMARY KEY AUTOINCREMENT,usuarios_idUsuario INTEGER ,categoria_idCategoria INTEGER ,descricaoLista VARCHAR, flagUrgencia INT DEFAULT 0,FOREIGN KEY (usuarios_idUsuario)  REFERENCES usuarios (idUsuario)  ON DELETE CASCADE  ON UPDATE CASCADE,FOREIGN KEY (categoria_idCategoria)  REFERENCES categoriaLista(idCategoriaLista)  ON DELETE CASCADE ON UPDATE CASCADE)";
     private final String CREATE_TABLE_ITENS_LISTA = "CREATE TABLE IF NOT EXISTS itensLista (idItensLista INTEGER PRIMARY KEY AUTOINCREMENT,lista_idLista INT NOT NULL,itemLista VARCHAR,flagFinalizado INT DEFAULT 0,FOREIGN KEY (lista_idLista)  REFERENCES lista (idLista)  ON DELETE CASCADE ON UPDATE CASCADE)";
 
