@@ -114,7 +114,6 @@ public class ItensListaDAO {
                     ItensLista it = new ItensLista();
                     it.setIdItem(cursor.getInt(indiceIdItem));
                     it.setItemLista(cursor.getString(indiceItemLista));
-
                     iListas.add(it);
 
                 }
