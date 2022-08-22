@@ -19,6 +19,10 @@ public class CategoriaDAO {
         this.dbHelper = dbHelper;
     }
 
+    public CategoriaDAO() {
+
+    }
+
     public int addCategoria(Categoria cat){
         int resultado = 0;
 
@@ -42,14 +46,18 @@ public class CategoriaDAO {
         try{
             SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-            String sql= "SELECT A.* FROM "+DbHelper.TABLE_NAME_CATEGORIA+" A WHERE 1 = 1 AND A.usuarios_idUsuario = ?";
-            Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf(MainActivity.idUsuario) },null);
+//            String sql= "SELECT A.* FROM "+DbHelper.TABLE_NAME_CATEGORIA+" A WHERE 1 = 1 AND A.usuarios_idUsuario = ?";
+//            Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf(MainActivity.idUsuario) },null);
+
+            String sql= "SELECT A.* FROM "+DbHelper.TABLE_NAME_CATEGORIA+" A WHERE 1 = 1";
+            Cursor cursor = db.rawQuery(sql, null);
 
             if(cursor.getCount()> 0){
                 while (cursor.moveToNext()){
                     int indiceIdCategoria = cursor.getColumnIndex("idCategoriaLista");
                     int indiceDescricaoCategoria = cursor.getColumnIndex("descricaoCategoria");
 
+                    Log.i("Log # ", cursor.getString(indiceDescricaoCategoria));
                     Categoria cat = new Categoria();
                     cat.setIdCategoria(cursor.getInt(indiceIdCategoria));
                     cat.setDescricaoCategoria(cursor.getString(indiceDescricaoCategoria));
@@ -123,6 +131,25 @@ public class CategoriaDAO {
 
             retorno =  db.delete(DbHelper.TABLE_NAME_CATEGORIA, "idCategoriaLista = ? AND usuarios_idUsuario = ?  ", new String[]{ String.valueOf( cat.getIdCategoria() ), String.valueOf(MainActivity.idUsuario)});
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return retorno;
+    }
+
+    public int countCategorias() {
+        int retorno = 0;
+        try{
+//            String sql= "SELECT A.* FROM "+DbHelper.TABLE_NAME_CATEGORIA+" A WHERE 1 = 1 AND A.usuarios_idUsuario = ?";
+//            Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf(MainActivity.idUsuario) },null);
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            String sql= "SELECT A.idCategoriaLista FROM "+DbHelper.TABLE_NAME_CATEGORIA+" A";
+
+            Cursor cursor = db.rawQuery(sql, null);
+            retorno = cursor.getCount();
+
+            cursor.close();
+            db.close();
         }catch (Exception e){
             e.printStackTrace();
         }

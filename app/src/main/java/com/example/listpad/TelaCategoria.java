@@ -120,12 +120,12 @@ public class TelaCategoria extends AppCompatActivity {
                     Intent main = new Intent(this, MainActivity.class);
                     startActivity(main);
                     break;
-                case R.id.sair:
-                    MainActivity.idUsuario = -1;
-                    MainActivity.nomeUsuario = "";
-                    Intent sair = new Intent(this, Login.class);
-                    startActivity(sair);
-                    break;
+//                case R.id.sair:
+//                    MainActivity.idUsuario = -1;
+//                    MainActivity.nomeUsuario = "";
+//                    Intent sair = new Intent(this, Login.class);
+//                    startActivity(sair);
+//                    break;
                 case R.id.listaCategoria:
                     Intent cat = new Intent(this, TelaCategoria.class);
                     startActivity(cat);

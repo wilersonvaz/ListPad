@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TelaItensLista">
+    tools:context=".TelaItensLista"
+    android:background="@color/gray">
 
         <TextView
             android:id="@+id/idItensLista"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="25dp"
             android:padding="5dp"
-            android:background="@color/blue"
+            android:background="@color/azul"
             android:text="Aqui vai a lista"
             android:textColor="@color/white"
             android:textSize="20dp" />
@@ -22,7 +26,10 @@
             android:id="@+id/idRecyclerMostraItens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/idAdicionaItemLista"

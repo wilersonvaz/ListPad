@@ -13,7 +13,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         card_view:cardCornerRadius="4dp"
         card_view:contentPadding="5dp"
         android:background="@drawable/shape">
@@ -42,7 +42,7 @@
             android:id="@+id/idDescricaoLista"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/blue"
+            android:background="@color/azul"
             android:paddingLeft="5dp"
             android:text="Lista de tarefas"
             android:textColor="@color/white"
@@ -89,7 +89,7 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:onClick="onClick"
-                    android:text="Ver detalhes" />
+                    android:text="Ver itens da tarefa" />
 
                 <TextView
                     android:id="@+id/idExcluirDetalhesLista"

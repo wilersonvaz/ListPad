@@ -43,7 +43,7 @@ public class AdapterItemLista extends RecyclerView.Adapter<AdapterItemLista.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewItemLista holder, int position) {
-        holder.idCodigoItemLista.setText("Cdigo: "+String.valueOf(itensLista.get(position).getIdItem()));
+        holder.idCodigoItemLista.setText("Código: "+String.valueOf(itensLista.get(position).getIdItem()));
         holder.descItemLista.setText(itensLista.get(position).getItemLista());
 
         if(itensLista.get(position).getFlagFinalizado() > 0){
@@ -104,13 +104,6 @@ public class AdapterItemLista extends RecyclerView.Adapter<AdapterItemLista.View
                     Intent intent = new Intent(view.getContext(), TelaItensLista.class);
                     intent.putExtras(bundle);
                     view.getContext().startActivity(intent);
-
-//
-//                    if(itensListaDAO.excluirItem(itLista) > 0){
-//                        Log.i("Log # ", "Item deletado");
-//                    }else{
-//                        Log.i("Log # ", "Ocorreu um erro ao excluir o item!");
-//                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }

@@ -45,11 +45,12 @@ public class ListaDAO {
     public ArrayList<Lista> listarlistas(){
         ArrayList<Lista> lista = new ArrayList<>();
         try{
-            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.usuarios_idUsuario= ? ORDER BY A.flagUrgencia  DESC";
-
             SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(MainActivity.idUsuario)}, null);
+//            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.usuarios_idUsuario= ? ORDER BY A.flagUrgencia  DESC";
+//            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(MainActivity.idUsuario)}, null);
+            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 ORDER BY A.flagUrgencia  DESC";
+            Cursor cursor = db.rawQuery(sql, null);
 
             if(cursor.getCount() > 0){
 
@@ -88,9 +89,13 @@ public class ListaDAO {
     public ArrayList<Lista> populaLista(Lista lista) {
         ArrayList<Lista> populaLlista = new ArrayList<>();
         try{
-            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.usuarios_idUsuario= ? AND A.idLista = ? ORDER BY A.flagUrgencia, A.idLista DESC";
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf( MainActivity.idUsuario ), String.valueOf( lista.getIdLista() )}, null);
+
+//            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.usuarios_idUsuario= ? AND A.idLista = ? ORDER BY A.flagUrgencia, A.idLista DESC";
+//            Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf( MainActivity.idUsuario ), String.valueOf( lista.getIdLista() )}, null);
+
+            String sql = "SELECT DISTINCT A.idLista, A.descricaoLista, A.flagUrgencia, B.idCategoriaLista, B.descricaoCategoria FROM "+DbHelper.TABLE_NAME_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_CATEGORIA+" B ON (A.categoria_idCategoria = B.idCategoriaLista) WHERE 1 = 1 AND A.idLista = ? ORDER BY A.flagUrgencia, A.idLista DESC";
+            Cursor cursor = db.rawQuery(sql, new String[]{ String.valueOf( lista.getIdLista() )}, null);
 
             if(cursor.getCount() > 0){
                 while (cursor.moveToNext()){

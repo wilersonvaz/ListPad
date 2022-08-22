@@ -91,8 +91,8 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.View
     }
 
     public class ViewCategorias extends RecyclerView.ViewHolder{
-        TextView codigoCategoria, descricaoCategoria;
-        ImageButton btnExcluirCategoria;
+        TextView codigoCategoria, descricaoCategoria, btnExcluirCategoria;
+//        ImageButton btnExcluirCategoria;
 
         public ViewCategorias(@NonNull View itemView) {
             super(itemView);

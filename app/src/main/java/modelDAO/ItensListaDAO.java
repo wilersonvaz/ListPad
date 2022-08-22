@@ -24,9 +24,11 @@ public class ItensListaDAO {
     public ArrayList<ItensLista> listaItens(ItensLista listaItens) {
         ArrayList<ItensLista> itensLista = new ArrayList<>();
         try{
-            String sql = "SELECT A.descricaoLista, A.usuarios_idUsuario, B.* from "+DbHelper.TABLE_NAME_LISTA+" A left join "+DbHelper.TABLE_NAME_ITEM_LISTA+" B ON (A.idLista = B.lista_idLista) WHERE 1 = 1 AND A.idLista = ? AND A.usuarios_idUsuario = ?";
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(listaItens.getIdItem()), String.valueOf( MainActivity.idUsuario )});
+//            String sql = "SELECT A.descricaoLista, A.usuarios_idUsuario, B.* from "+DbHelper.TABLE_NAME_LISTA+" A left join "+DbHelper.TABLE_NAME_ITEM_LISTA+" B ON (A.idLista = B.lista_idLista) WHERE 1 = 1 AND A.idLista = ? AND A.usuarios_idUsuario = ?";
+//            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(listaItens.getIdItem()), String.valueOf( MainActivity.idUsuario )});
+            String sql = "SELECT A.descricaoLista, A.usuarios_idUsuario, B.* from "+DbHelper.TABLE_NAME_LISTA+" A left join "+DbHelper.TABLE_NAME_ITEM_LISTA+" B ON (A.idLista = B.lista_idLista) WHERE 1 = 1 AND A.idLista = ?";
+            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(listaItens.getIdItem())});
 
             if(cursor.getCount()>0){
 
@@ -95,11 +97,13 @@ public class ItensListaDAO {
     public ArrayList<ItensLista>  populaItensLista(ItensLista itensLista) {
         ArrayList<ItensLista> iListas = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM "+DbHelper.TABLE_NAME_ITEM_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_LISTA+" B ON (A.lista_idLista = B.idLista) INNER JOIN "+DbHelper.TABLE_NAME_USUARIOS+" C ON (B.usuarios_idUsuario = C.idUsuario) WHERE 1 = 1 AND A.idItensLista = ? AND B.idLista = ? AND C.idUsuario = ?";
-
             SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(itensLista.getIdItem()), String.valueOf(itensLista.getLista().getIdLista()), String.valueOf(MainActivity.idUsuario) }, null);
+//            String sql = "SELECT * FROM "+DbHelper.TABLE_NAME_ITEM_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_LISTA+" B ON (A.lista_idLista = B.idLista) INNER JOIN "+DbHelper.TABLE_NAME_USUARIOS+" C ON (B.usuarios_idUsuario = C.idUsuario) WHERE 1 = 1 AND A.idItensLista = ? AND B.idLista = ? AND C.idUsuario = ?";
+//            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(itensLista.getIdItem()), String.valueOf(itensLista.getLista().getIdLista()), String.valueOf(MainActivity.idUsuario) }, null);
+
+            String sql = "SELECT * FROM "+DbHelper.TABLE_NAME_ITEM_LISTA+" A INNER JOIN "+DbHelper.TABLE_NAME_LISTA+" B ON (A.lista_idLista = B.idLista)  WHERE 1 = 1 AND A.idItensLista = ? AND B.idLista = ?";
+            Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(itensLista.getIdItem()), String.valueOf(itensLista.getLista().getIdLista()) }, null);
 
             if(cursor.getCount() > 0){
 

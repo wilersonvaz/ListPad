@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import Adapter.AdapterLista;
 import model.DbHelper;
 import model.Lista;
+import modelDAO.CategoriaDAO;
 import modelDAO.ListaDAO;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,39 +41,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(idUsuario < 0){
-            Intent intent = new Intent(this, Login.class);
-            startActivity(intent);
-        }else{
+//        if(idUsuario < 0){
+//            Intent intent = new Intent(this, Login.class);
+//            startActivity(intent);
+//        }else{
+        DbHelper dbHelper= new DbHelper(getApplicationContext());
+        CategoriaDAO categoriaDAO = new CategoriaDAO(dbHelper);
+        int countCategoria = categoriaDAO.countCategorias();
+        if(countCategoria > 0) {
             textView = findViewById(R.id.idTextView);
-            textView.setText("Seja bem-vindo "+nomeUsuario+"!");
+            textView.setText("Seja bem-vindo " + nomeUsuario + "!");
             idVerDetalhesLista = findViewById(R.id.idVerDetalhesLista);
             idExcluirDetalhesLista = findViewById(R.id.idExcluirDetalhesLista);
 
-            //            this.setTitle("Ola "+nomeUsuario+"!");
 
-            if(getIntent() != null && getIntent().hasExtra("salvarLista")){
+            if (getIntent() != null && getIntent().hasExtra("salvarLista")) {
                 Bundle bundle = getIntent().getExtras();
                 int salvarLista = bundle.getInt("salvarLista");
 
-                if(salvarLista > 0){
-                    Snackbar.make(findViewById(android.R.id.content) , "Lista salva com sucesso!", Snackbar.LENGTH_LONG)
+                if (salvarLista > 0) {
+                    Snackbar.make(findViewById(android.R.id.content), "Lista salva com sucesso!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }else{
-                    Snackbar.make(findViewById(android.R.id.content) , "Ocorreu um erro ao salvar a lista!", Snackbar.LENGTH_LONG)
+                } else {
+                    Snackbar.make(findViewById(android.R.id.content), "Ocorreu um erro ao salvar a lista!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
 
-            if(getIntent() != null && getIntent().hasExtra("excluirLista")){
+            if (getIntent() != null && getIntent().hasExtra("excluirLista")) {
                 Bundle bundle = getIntent().getExtras();
                 int excluirLista = bundle.getInt("excluirLista");
 
-                if(excluirLista > 0){
-                    Snackbar.make(findViewById(android.R.id.content) , "Lista Excluída com sucesso!", Snackbar.LENGTH_LONG)
+                if (excluirLista > 0) {
+                    Snackbar.make(findViewById(android.R.id.content), "Lista Excluída com sucesso!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                }else{
-                    Snackbar.make(findViewById(android.R.id.content) , "Ocorreu um erro ao excluir a lista!", Snackbar.LENGTH_LONG)
+                } else {
+                    Snackbar.make(findViewById(android.R.id.content), "Ocorreu um erro ao excluir a lista!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             }
@@ -86,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    if(lista != null){
+                    if (lista != null) {
                         idLista = lista.get(idRecyclerLista.getChildAdapterPosition(view)).getIdLista();
                     }
                     Bundle bundle = new Bundle();
@@ -107,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+//        }
+
+        }else{
+            Toast.makeText(getApplicationContext(), "Por favor, adicione pelo menos uma categoria!", Toast.LENGTH_LONG).show();
+            Intent cat = new Intent(this, TelaCategoria.class);
+            startActivity(cat);
         }
 
         //Fecha o onCreate
@@ -139,12 +150,12 @@ public class MainActivity extends AppCompatActivity {
                     Intent main = new Intent(this, MainActivity.class);
                     startActivity(main);
                     break;
-                case R.id.sair:
-                    idUsuario = -1;
-                    nomeUsuario = "";
-                    Intent sair = new Intent(this, Login.class);
-                    startActivity(sair);
-                    break;
+//                case R.id.sair:
+//                    idUsuario = -1;
+//                    nomeUsuario = "";
+//                    Intent sair = new Intent(this, Login.class);
+//                    startActivity(sair);
+//                    break;
                 case R.id.listaCategoria:
                     Intent cat = new Intent(this, TelaCategoria.class);
                     startActivity(cat);
