@@ -8,28 +8,35 @@
     tools:context=".TelaItensLista"
     android:background="@color/gray">
 
-        <TextView
-            android:id="@+id/idItensLista"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="25dp"
-            android:padding="5dp"
-            android:background="@color/azul"
-            android:text="Aqui vai a lista"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
+            android:background="@color/white"
+            android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/idItensLista"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Hello World!"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </RelativeLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/idRecyclerMostraItens"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/idAdicionaItemLista"

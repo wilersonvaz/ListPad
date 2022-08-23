@@ -43,7 +43,7 @@ public class AdapterItemLista extends RecyclerView.Adapter<AdapterItemLista.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewItemLista holder, int position) {
-        holder.idCodigoItemLista.setText("Código: "+String.valueOf(itensLista.get(position).getIdItem()));
+        holder.idCodigoItemLista.setText(String.valueOf(itensLista.get(position).getIdItem()));
         holder.descItemLista.setText(itensLista.get(position).getItemLista());
 
         if(itensLista.get(position).getFlagFinalizado() > 0){
@@ -82,7 +82,7 @@ public class AdapterItemLista extends RecyclerView.Adapter<AdapterItemLista.View
             }
         });
 
-        holder.btnExcluirItemLista.setOnClickListener(new View.OnClickListener() {
+        holder.txtIdExcluirItemLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
@@ -131,7 +131,7 @@ public class AdapterItemLista extends RecyclerView.Adapter<AdapterItemLista.View
     }
 
     public class ViewItemLista extends RecyclerView.ViewHolder{
-        TextView idCodigoItemLista,descItemLista;
+        TextView idCodigoItemLista,descItemLista,txtIdExcluirItemLista;
         CheckBox idFlagFinalizado;
         ImageButton btnExcluirItemLista;
 
@@ -140,7 +140,7 @@ public class AdapterItemLista extends RecyclerView.Adapter<AdapterItemLista.View
             idCodigoItemLista = itemView.findViewById(R.id.idCodigoItemLista);
             descItemLista = itemView.findViewById(R.id.descItemLista);
             idFlagFinalizado = itemView.findViewById(R.id.idFlagFinalizado);
-            btnExcluirItemLista = itemView.findViewById(R.id.btnExcluirItemLista);
+            txtIdExcluirItemLista = itemView.findViewById(R.id.txtIdExcluirItemLista);
         }
     }
 }

@@ -42,7 +42,7 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.View
 
     @Override
     public void onBindViewHolder(@NonNull AdapterCategoria.ViewCategorias holder, int position) {
-        holder.codigoCategoria.setText("Código: "+String.valueOf(listaCategoria.get(position).getIdCategoria()));
+        holder.codigoCategoria.setText(String.valueOf(listaCategoria.get(position).getIdCategoria()));
         holder.descricaoCategoria.setText(listaCategoria.get(position).getDescricaoCategoria());
         holder.btnExcluirCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
